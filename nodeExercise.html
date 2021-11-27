@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="">First Name:</label><input id="first-name" type="text">
+    <label for="">Last Name:</label><input id="last-name" type="text">
+    <label for="">ID:</label><input id="user-id" type="text">
+    <button>Get Details</button>
+
+    <script>
+        const buttonRef = document.querySelector('button')
+        const firstname = document.querySelector('#first-name')
+        const lastname = document.querySelector('#last-name')
+        const id = document.querySelector('#user-id')
+
+        buttonRef.addEventListener('click', () => {
+            const data = {
+                firstname: firstname.value,
+                lastname: lastname.value,
+                id: id.value
+            }
+            getPersonsFromServer(data)
+        })
+
+        function getPersonsFromServer(data) {
+            fetch('http://localhost:3000/persons', {
+                method: 'POST',
+                headers: { "Content-type": "application/json; charset=UTF-8" },
+                body: JSON.stringify(data),
+            }
+            )
+        }
+    </script>
+    <script src="nodeExercise.js"></script>
+</body>
+
+</html>
